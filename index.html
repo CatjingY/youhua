@@ -1,0 +1,123 @@
+<!DOCTYPE html><!-- This web page is copied by "https://bazhan.wang" --><html><head><meta name="360-analysis-id" content="2w1k3a331h371f33"><meta charset="utf-8">
+    
+    <title>Hongan - <油>画</title>
+    <meta name="description" content="Paint like Pollock with this interactive oil painting toy.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/apps.css" rel="stylesheet" type="text/css">
+
+    <script src="js/index.js" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <div class="ui top-left">
+
+      </a>
+    </div>
+    <div class="ui top-right">
+      
+      <a class="icon save">
+        <img class="smaller" src="https://d33wubrfki0l68.cloudfront.net/e8161c3fe8d7b81ae0fc7829ea6cee1eaf5dc1de/6ae5f/assets/icon-disk.png">
+      </a>
+      <a class="icon trash">
+        <img class="smaller" src="https://d33wubrfki0l68.cloudfront.net/4e11aefb3790e4cc5575ec8eac2c5a74caedfd82/f27e4/assets/icon-trash.png">
+      </a>
+    </div>
+
+    <canvas id="canvas" class="primary"></canvas>
+    <div class="tools">
+      <div class="color tool tool-1">
+        <div class="tool-button">
+          <div class="tool-button-icon">
+            <div class="tool-button-icon-inner" style="background-color: #326df5">
+              <input class="input-field color-input" type="color" value="#326df5">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="color tool tool-2">
+        <div class="tool-button">
+          <div class="tool-button-icon">
+            <div class="tool-button-icon-inner" style="background-color: #ffffff">
+              <input class="input-field color-input" type="color" value="#ffffff">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.onload = function () {
+        var app = new OilPainting();
+        app.initialize();
+
+        const tools = document.querySelectorAll(".tool-button");
+        tools.forEach(function (tool) {
+          tool.addEventListener("click", (e) => {
+            e.target.closest(".tool").classList.toggle("open");
+
+            e.target.closest(".tool").querySelector("input")?.click();
+            e.target.closest(".tool").querySelector("input")?.focus();
+          });
+        });
+
+        const inputs = document.querySelectorAll(".input-field");
+        inputs.forEach(function (input) {
+          input.addEventListener("blur", (e) => {
+            e.target.closest(".tool").classList.toggle("open");
+          });
+        });
+
+        let input = document.querySelector(".tool-1 .color-input");
+        input.addEventListener("input", (e) => {
+          app.setColor(e.target.value);
+          e.target.closest(".tool-button-icon-inner").style.backgroundColor =
+            e.target.value;
+        });
+
+        let input2 = document.querySelector(".tool-2 .color-input");
+        input2.addEventListener("input", (e) => {
+          app.fillBackground(e.target.value);
+          e.target.closest(".tool-button-icon-inner").style.backgroundColor =
+            e.target.value;
+        });
+
+        document.querySelector('.trash').addEventListener('click', () => {
+          app.fillBackground(document.querySelector(".tool-2 .color-input").value);
+        });
+
+        function save() {
+          let downloadLink = document.createElement("a");
+          downloadLink.setAttribute("download", "paint-toys-oil-paint.png");
+          let canvas = document.getElementById("canvas");
+          canvas.toBlob(function (blob) {
+            let url = URL.createObjectURL(blob);
+            downloadLink.setAttribute("href", url);
+            downloadLink.click();
+          });
+        }
+
+        let saveInput = document
+          .querySelector(".save")
+          .addEventListener("click", () => {
+            save();
+          });
+      };
+    </script>
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PRJ9ZMV44M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PRJ9ZMV44M');
+</script><!--!‬‏‬‫‭‬‭‫‎‭‪‭‫‬‏‭‫‫‫‬‭‭‪‭--><!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VJBRK9986D"></script><!--!‬‏‬‫‭‬‭‫‎‭‪‭‫‬‏‭‫‫‫‬‭‭‪‭-->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VJBRK9986D');
+</script><!--!‬‏‬‫‭‬‭‫‎‭‪‭‫‬‏‭‫‫‫‬‭‭‪‭-->
+
+</body></html>
